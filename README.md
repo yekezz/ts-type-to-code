@@ -36,7 +36,7 @@ interface MarkerOptions {
 ```
 
 ```
-import tsTypeToCode from 'ts-type-to-code'
+import { tsTypeToCode } from 'ts-type-to-code'
 const code = tsTypeToCode('types/marker.d.ts')
 console.log(code)
 

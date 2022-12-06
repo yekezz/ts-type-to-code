@@ -1,7 +1,6 @@
 import type { ParseResult } from '@babel/parser'
 import type { File } from '@babel/types'
-import _traverse from '@babel/traverse'
-const traverse = (_traverse as any).default
+import traverse from '@babel/traverse'
 
 export type TraverseCode = [string, object]
 

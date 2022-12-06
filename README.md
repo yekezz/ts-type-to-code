@@ -12,9 +12,8 @@ I want to get the code of the configuration item from the type file, but I don't
 
 ## API
 - tsTypeToCode(filePath: string[, optional: boolean]) 
-```
+
 The default optional is true, which means that regardless of whether the key in the type is optional or not, it will be returned. If option is false, the result will only return the required key.
-```
 
 ## Usage
 ``` pnpm add ts-type-to-code ```

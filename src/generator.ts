@@ -1,6 +1,10 @@
 import fse from 'fs-extra'
 import type { GenerateMethod, TraverseCode, TsTypeToCodeOptions } from '.'
 
+function transformName(name: string) {
+  return `${name[0].toLocaleLowerCase()}${name.slice(1)}`
+}
+
 function generateCode(traverseCode: TraverseCode[], generate?: GenerateMethod) {
   let code = ''
   if (generate) {
@@ -8,7 +12,7 @@ function generateCode(traverseCode: TraverseCode[], generate?: GenerateMethod) {
   }
   else {
     traverseCode.forEach((i) => {
-      code += `export const ${i[0].toLocaleUpperCase()} = {
+      code += `export const ${transformName(i[0])} = {
 `
       for (const k in i[1])
         code += `  ${k}: '',\n`

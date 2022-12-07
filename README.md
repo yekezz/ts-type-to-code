@@ -36,9 +36,9 @@ import { tsTypeToCode } from 'ts-type-to-code'
 tsTypeToCode('test/marker.d.ts', 'test/marker.ts', {optional: false})
 ```
 from
-['assets/source.png']
+<img src=".assets/source.png" title="dev" style="width:50vw;" />
 to
-['assets/target.png']
+<img src=".assets/target.png" title="dev" style="width:50vw;" />
 
 ## API
 - tsTypeToCode(srcPath: string, targetPath: string[, options: TsTypeToCodeOptions]) 

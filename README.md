@@ -36,9 +36,9 @@ import { tsTypeToCode } from 'ts-type-to-code'
 tsTypeToCode('test/marker.d.ts', 'test/marker.ts', {optional: false})
 ```
 from
-<img src=".assets/source.png" title="dev" style="width:50vw;" />
+<img src="./assets/source.png" title="dev" style="width:50vw;" />
 to
-<img src=".assets/target.png" title="dev" style="width:50vw;" />
+<img src="./assets/target.png" title="dev" style="width:50vw;" />
 
 ## API
 - tsTypeToCode(srcPath: string, targetPath: string[, options: TsTypeToCodeOptions]) 
@@ -67,6 +67,9 @@ interface TsTypeToCodeOptions {
   generate?: GenerateMethod
 }
 ```
+
+## Explain
+The plugin only extracts codes for simple interface, and does not include complex ts types. Because ast's analysis of complex types is not very clear, in order to reduce complexity, there is a trade-off.
 
 ## License
 

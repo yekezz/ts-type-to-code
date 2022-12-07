@@ -1,17 +1,14 @@
-import path from 'node:path'
 import fse from 'fs-extra'
-const __dirname = path.resolve()
 
 /**
  *
- * @param filePath
+ * @param src
  * @returns
  */
-export async function getCode(filePath: string) {
+export async function getCode(src: string) {
   let sourceCode = ''
-  const resolvePath = path.resolve(__dirname, filePath)
   try {
-    sourceCode = await fse.readFile(resolvePath, { encoding: 'utf-8' })
+    sourceCode = await fse.readFile(src, { encoding: 'utf-8' })
   }
   catch (error) {
     console.error(error)

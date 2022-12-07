@@ -1,16 +1,15 @@
 import type { ParseResult } from '@babel/parser'
 import type { File } from '@babel/types'
 import traverse from '@babel/traverse'
-
-export type TraverseCode = [string, object]
+import type { TraverseCode, TsTypeToCodeOptions } from '.'
 
 /**
  *
  * @param ast
  * @returns
  */
-export function transform(ast: ParseResult<File>, optional?: boolean): TraverseCode[] {
-  const traverseCode: TraverseCode[] = []
+export function transform(ast: ParseResult<File>, { optional = true, filter }: TsTypeToCodeOptions): TraverseCode[] {
+  let traverseCode: TraverseCode[] = []
   traverse(ast, {
     TSInterfaceBody(path: any) {
       const result: any = {}
@@ -20,5 +19,7 @@ export function transform(ast: ParseResult<File>, optional?: boolean): TraverseC
       traverseCode.push([path.parent.id.name, result])
     },
   })
+  if (filter)
+    traverseCode = traverseCode.filter(filter)
   return traverseCode
 }

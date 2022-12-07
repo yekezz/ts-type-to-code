@@ -9,11 +9,7 @@
 
 ## Resolve
 I want to get the code of the configuration item from the type file, but I don't need json schema.
-
-## API
-- tsTypeToCode(filePath: string[, optional: boolean]) 
-
-The default optional is true, which means that regardless of whether the key in the type is optional or not, it will be returned. If option is false, the result will only return the required key.
+ returned. If option is false, the result will only return the required key.
 
 ## Usage
 ``` pnpm add ts-type-to-code ```
@@ -37,19 +33,40 @@ interface MarkerOptions {
 
 ```
 import { tsTypeToCode } from 'ts-type-to-code'
-const code = tsTypeToCode('types/marker.d.ts')
-console.log(code)
-
-// [['Marker', {id:'',off:'',on:'',options:''}],['MarkerOptions', {map:'',position:'',icon:'',animate:''}]]
-
-
-const code2 = tsTypeToCode('types/marker.d.ts', false)
-console.log(code2)
-
-// [['Marker', {id:'',off:'',on:'',options:''}],['MarkerOptions', {map:'',position:''}]]
+tsTypeToCode('test/marker.d.ts', 'test/marker.ts', {optional: false})
 ```
+from
+['assets/source.png']
+to
+['assets/target.png']
+
+## API
+- tsTypeToCode(srcPath: string, targetPath: string[, options: TsTypeToCodeOptions]) 
+
+## Options
+- optional: The default optional is true, which means that regardless of whether the key in the type is optional or not, it will be returned. If option is false, the result will only return the required key.
+
+- filter: filter the code on demand, or ignore it.
+
+- generate: methods for generating target file content. By default, it will be generated in the form of object(as above image).
 
 
+```
+interface TsTypeToCodeOptions {
+  /**
+   * Whether to keep the optional key
+   */
+  optional?: boolean
+  /**
+   * filter traverseCode
+   */
+  filter?: TraverseFilter
+  /**
+   * methods for generating target file content
+   */
+  generate?: GenerateMethod
+}
+```
 
 ## License
 

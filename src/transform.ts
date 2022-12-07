@@ -14,7 +14,8 @@ export function transform(ast: ParseResult<File>, { optional = true, filter }: T
     TSInterfaceBody(path: any) {
       const result: any = {}
       path.node.body.forEach((i: any) => {
-        optional ? (result[i.key.name] = '') : (!i.optional && (result[i.key.name] = ''))
+        if (i.key)
+          optional ? (result[i.key.name] = '') : (!i.optional && (result[i.key.name] = ''))
       })
       traverseCode.push([path.parent.id.name, result])
     },

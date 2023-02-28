@@ -10,5 +10,6 @@ import type { File } from '@babel/types'
 export function parse(sourceCode: string): ParseResult<File> {
   return astParser.parse(sourceCode, {
     plugins: ['typescript'],
+    sourceType: 'module',
   })
 }

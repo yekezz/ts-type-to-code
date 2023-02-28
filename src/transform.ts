@@ -3,6 +3,10 @@ import type { File } from '@babel/types'
 import traverse from '@babel/traverse'
 import type { TraverseCode, TsTypeToCodeOptions } from '.'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+const _traverse = traverse?.default ?? traverse
+
 /**
  *
  * @param ast
@@ -10,7 +14,7 @@ import type { TraverseCode, TsTypeToCodeOptions } from '.'
  */
 export function transform(ast: ParseResult<File>, { optional = true, filter }: TsTypeToCodeOptions): TraverseCode[] {
   let traverseCode: TraverseCode[] = []
-  traverse(ast, {
+  _traverse(ast, {
     TSInterfaceBody(path: any) {
       const result: any = {}
       path.node.body.forEach((i: any) => {
